@@ -1,0 +1,48 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.semaphore {
+  display: inline-grid;
+  gap: 15px;
+  padding: 15px;
+  background-color: #333;
+}
+
+.bulb {
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  opacity: 0.3;
+  transition: background-color 0.5s, box-shadow 0.5s, opacity 0.5s;
+  position: relative;
+}
+
+.bulb.on {
+  opacity: 1;
+}
+
+.bulb.red {
+  background-color: red;
+}
+
+.bulb.red.on {
+  box-shadow: 0 0 15px red;
+}
+
+.bulb.yellow {
+  background-color: yellow;
+}
+
+.bulb.yellow.on {
+  box-shadow: 0 0 15px yellow;
+}
+
+.bulb.green {
+  background-color: #00ce00;
+}
+
+.bulb.green.on {
+  box-shadow: 0 0 15px #00ce00;
+}
