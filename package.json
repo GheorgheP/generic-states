@@ -5,8 +5,10 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@types/ramda": "^0.27.44",
     "classnames": "2.3.1",
     "fp-utilities": "1.0.0",
+    "ramda": "^0.27.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-redux": "7.2.4",
@@ -19,7 +21,7 @@
     "@types/react": "17.0.0",
     "@types/react-dom": "17.0.0",
     "prettier": "^2.3.2",
-    "typescript": "4.3.5"
+    "typescript": "4.2.4"
   },
   "scripts": {
     "start": "react-scripts start",

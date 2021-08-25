@@ -11,7 +11,7 @@ export function Content<T extends string | number>(props: Props<T>) {
       {props.items.map((i) => (
         <li key={i.id}>
           <div className="img">
-            <img src={i.image} />
+            <img src={i.image} alt={i.image} />
           </div>
           <div className="title">{i.title}</div>
           <button className="remove" onClick={() => props.onRemove(i.id)}>
