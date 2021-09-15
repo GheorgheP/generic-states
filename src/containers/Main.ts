@@ -1,6 +1,6 @@
-import { Component, createElement, FC, ReactElement, useCallback } from "react";
+import { createElement, FC, ReactElement, useCallback } from "react";
 import { Sidebar } from "../components/Sidebar";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Actions,
   goToCars,
@@ -8,11 +8,12 @@ import {
   goToHouses,
 } from "../store/types/Actions";
 import * as State from "../store/types/State";
-import * as ListingState from "../States/Listing/types/State";
+import * as Listing from "../States/Listing/types/State";
 import { match } from "fp-utilities";
 import { always } from "ramda";
 import { Loading } from "../components/Loading";
 import { Error } from "../components/Error";
+import { Content } from "./Content";
 
 const items: Array<{ id: "houses" | "cars" | "cats"; title: string }> = [
   { id: "houses", title: "Houses" },
@@ -20,26 +21,27 @@ const items: Array<{ id: "houses" | "cars" | "cats"; title: string }> = [
   { id: "cats", title: "Cats" },
 ];
 
-export const createContainerContainer = <T extends string>(t: T) =>
+export const createContainer = <T extends string>(
+  t: T
+): ((s: Listing.Listing<T>) => ReactElement) =>
   match(
-    [ListingState.isLoading(t), always(createElement(Loading))],
-    [ListingState.isLoadError(t), always(createElement(Error))],
-    [ListingState.isReady(t), always(createElement(Error))],
-    [ListingState.isSearching(t), always(createElement(Error))],
-    [ListingState.isRemoveConfirmation(t), always(createElement(Error))],
-    [ListingState.isRemoving(t), always(createElement(Error))]
+    [Listing.isLoading(t), always(createElement(Loading))],
+    [Listing.isLoadError(t), always(createElement(Error))],
+    [Listing.isReady<T>(t), (s) => createElement(Content, s)],
+    [Listing.isSearching<T>(t), (s) => createElement(Content, s)],
+    [Listing.isRemoveConfirmation<T>(t), (s) => createElement(Content, s)],
+    [Listing.isRemoving<T>(t), (s) => createElement(Content, s)]
   );
 
-const t = createContainerContainer("Houses");
-
 const container: FC<State.State> = match(
-  [State.isHouses, createContainerContainer("Houses")],
-  [State.isCars, createContainerContainer("Cars")],
-  [State.isCats, createContainerContainer("Cats")]
+  [State.isHouses, createContainer("Houses")],
+  [State.isCars, createContainer("Cars")],
+  [State.isCats, createContainer("Cats")]
 );
 
-export const Main = (state: State.State): ReactElement => {
+export const Main = (): ReactElement => {
   const dispatch = useDispatch();
+  const state = useSelector<State.State, State.State>((s) => s);
   const onClick = useCallback(
     (v: "houses" | "cars" | "cats"): Actions => {
       switch (v) {

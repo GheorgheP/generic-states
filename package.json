@@ -1,38 +1,51 @@
 {
-  "name": "match2",
-  "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "main": "src/index.tsx",
+  "name": "generic-states",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
     "@types/ramda": "^0.27.44",
-    "classnames": "2.3.1",
-    "fp-utilities": "1.0.0",
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "fp-utilities": "^1.1.3",
+    "prettier": "^2.4.0",
     "ramda": "^0.27.1",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-redux": "7.2.4",
-    "react-scripts": "4.0.0",
-    "redux": "4.1.0",
-    "redux-observable": "1.2.0",
-    "rxjs": "6.5.5"
-  },
-  "devDependencies": {
-    "@types/react": "17.0.0",
-    "@types/react-dom": "17.0.0",
-    "prettier": "^2.3.2",
-    "typescript": "4.2.4"
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.5",
+    "react-scripts": "4.0.3",
+    "redux": "^4.1.1",
+    "redux-observable": "^2.0.0",
+    "rxjs": "^7.3.0",
+    "typescript": "^4.2.4",
+    "web-vitals": "^1.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }

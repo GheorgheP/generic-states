@@ -34,7 +34,7 @@ let items: Item[] = [
   },
 ];
 
-export const Houses: Sdk = {
+export const Cats: Sdk = {
   getItems: (s) =>
     new Promise((r) =>
       setTimeout(
