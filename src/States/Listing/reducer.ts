@@ -1,9 +1,10 @@
 import { Actions, Types } from "./types/Actions";
 import * as State from "./types/State";
+import { Item } from "../../Sdks/types/Item";
 
 export const createReducer =
   <T extends string>(t: T) =>
-  (s: State.Listing<T>, a: Actions): State.Listing<T> => {
+  (s: State.Listing<T, Item>, a: Actions<Item>): State.Listing<T, Item> => {
     switch (a.type) {
       case Types.Fail:
         return State.isLoading(t)(s) ? State.loadError(t)(a.payload) : s;

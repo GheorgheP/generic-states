@@ -1,47 +1,38 @@
 import { Sdk } from "../States/Listing/observable";
-import { Item } from "../States/Listing/types/Item";
+import { Item } from "./types/Item";
 
 let items: Item[] = [
   {
     id: 1,
-    title: "First item",
+    title: "Tesla model S",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4lVEefmG0mNnBkwmb07QVY0OkVLcNAXytAPNoyESxlP2vnQoUNdAIhBHxbeBQ6dgEcEU&usqp=CAU",
+      "https://tesla-cdn.thron.com/delivery/public/image/tesla/195458a0-ff67-488c-b972-14d23d2c42fb/bvlatuR/std/1200x630/ms-homepage-social",
   },
   {
     id: 2,
-    title: "Second item",
+    title: "BMW x5",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegu6TChc4r1EE78BBj40XnbX652Jre0MxYSeq7SlqUt52jjI4DC_fvznXIW0U0f47wxI&usqp=CAU",
+      "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/2022-bmw-x5-black-vermilion-edition-101-1625852653.jpg?crop=0.998xw:0.750xh;0.00160xw,0.135xh&resize=1200:*",
   },
   {
     id: 3,
-    title: "Third item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvDZ0B6AvPk2NbPG8LvgpYZvaFQVQ0S3zpItwaScuKw8wG25ZZYkRUmQA3gLOL9_56KzA&usqp=CAU",
+    title: "Skoda superb",
+    image: "https://cdn.motor1.com/images/mgl/LOPmW/s1/4x3/2020-skoda-superb-facelift.webp",
   },
   {
     id: 4,
-    title: "Forth item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT98FmndJW6nLQgxVRGsctrmFb50alUiIniRKsB62DwM9jmVP4yiQ2PQCSwexeWklq-Rts&usqp=CAU",
+    title: "Audi e-tron",
+    image: "https://ev-database.org/img/auto/Audi_e-tron_Sportback_2020/Audi_e-tron_Sportback_2020-01.jpg",
   },
   {
     id: 5,
-    title: "Fifth item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKsI6YC4I9bh8fFBfVofSfzhomUZoh2old-C6lvm9GRmOO0K9JmEV9JBQHLN8hzTnvnaA&usqp=CAU",
+    title: "Polstar",
+    image: "https://i.pinimg.com/originals/3b/7d/61/3b7d61c224c07337f7d7bb6c600d0bff.jpg",
   },
 ];
 
-export const Cars: Sdk = {
-  getItems: (s) =>
-    new Promise((r) =>
-      setTimeout(
-        () => r(s ? items.filter((i) => i.title.includes(s)) : items),
-        3000
-      )
-    ),
+export const Cars: Sdk<Item> = {
+  getItems: (s) => new Promise((r) => setTimeout(() => r(s ? items.filter((i) => i.title.includes(s)) : items), 3000)),
   remove: (id) => {
     items = items.filter((i) => i.id !== id);
 

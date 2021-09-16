@@ -1,4 +1,3 @@
-import { Item } from "./Item";
 import { Action } from "redux";
 
 export enum Types {
@@ -27,12 +26,12 @@ export const fail = (payload: Fail["payload"]): Fail => ({
 // endregion
 
 // region Success
-export interface Success {
+export interface Success<I> {
   type: Types.Success;
-  payload: Item[];
+  payload: I[];
 }
 
-export const success = (payload: Success["payload"]): Success => ({
+export const success = <I>(payload: Success<I>["payload"]): Success<I> => ({
   type: Types.Success,
   payload,
 });
@@ -63,13 +62,13 @@ export const searchFail = (payload: SearchFail["payload"]): SearchFail => ({
 // endregion
 
 // region SearchSuccess
-export interface SearchSuccess {
+export interface SearchSuccess<I> {
   type: Types.SearchSuccess;
-  payload: Item[];
+  payload: I[];
 }
-export const searchSuccess = (
-  payload: SearchSuccess["payload"]
-): SearchSuccess => ({ type: Types.SearchSuccess, payload });
+export const searchSuccess = <I>(
+  payload: SearchSuccess<I>["payload"]
+): SearchSuccess<I> => ({ type: Types.SearchSuccess, payload });
 // endregion
 
 // region Remove
@@ -114,27 +113,27 @@ export const removeFail = (payload: RemoveFail["payload"]): RemoveFail => ({
 // endregion
 
 // region RemoveSuccess
-export interface RemoveSuccess {
+export interface RemoveSuccess<I> {
   type: Types.RemoveSuccess;
-  payload: Item[];
+  payload: I[];
 }
 
-export const removeSuccess = (
-  payload: RemoveSuccess["payload"]
-): RemoveSuccess => ({ type: Types.RemoveSuccess, payload });
+export const removeSuccess = <I>(
+  payload: RemoveSuccess<I>["payload"]
+): RemoveSuccess<I> => ({ type: Types.RemoveSuccess, payload });
 // endregion
 
-export type Actions =
+export type Actions<I> =
   | Fail
-  | Success
+  | Success<I>
   | Search
   | SearchFail
-  | SearchSuccess
+  | SearchSuccess<I>
   | Remove
   | RemoveApprove
   | RemoveDeny
   | RemoveFail
-  | RemoveSuccess;
+  | RemoveSuccess<I>;
 
-export const isActions = (a: Action): a is Actions =>
+export const isActions = <I>(a: Action): a is Actions<I> =>
   Object.values(Types).includes(a.type);

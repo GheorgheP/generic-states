@@ -1,5 +1,5 @@
 import { Sdk } from "../States/Listing/observable";
-import { Item } from "../States/Listing/types/Item";
+import { Item } from "./types/Item";
 
 let items: Item[] = [
   {
@@ -34,7 +34,7 @@ let items: Item[] = [
   },
 ];
 
-export const Houses: Sdk = {
+export const Houses: Sdk<Item> = {
   getItems: (s) =>
     new Promise((r) =>
       setTimeout(

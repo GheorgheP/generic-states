@@ -1,47 +1,37 @@
 import { Sdk } from "../States/Listing/observable";
-import { Item } from "../States/Listing/types/Item";
+import { Item } from "./types/Item";
 
 let items: Item[] = [
   {
     id: 1,
     title: "First item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4lVEefmG0mNnBkwmb07QVY0OkVLcNAXytAPNoyESxlP2vnQoUNdAIhBHxbeBQ6dgEcEU&usqp=CAU",
+    image: "https://icatcare.org/app/uploads/2018/07/Thinking-of-getting-a-cat.png",
   },
   {
     id: 2,
     title: "Second item",
     image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRegu6TChc4r1EE78BBj40XnbX652Jre0MxYSeq7SlqUt52jjI4DC_fvznXIW0U0f47wxI&usqp=CAU",
+      "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/slideshows/is_my_cat_normal_slideshow/1800x1200_is_my_cat_normal_slideshow.jpg",
   },
   {
     id: 3,
     title: "Third item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvDZ0B6AvPk2NbPG8LvgpYZvaFQVQ0S3zpItwaScuKw8wG25ZZYkRUmQA3gLOL9_56KzA&usqp=CAU",
+    image: "https://i.natgeofe.com/n/46b07b5e-1264-42e1-ae4b-8a021226e2d0/domestic-cat_thumb_square.jpg",
   },
   {
     id: 4,
     title: "Forth item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT98FmndJW6nLQgxVRGsctrmFb50alUiIniRKsB62DwM9jmVP4yiQ2PQCSwexeWklq-Rts&usqp=CAU",
+    image: "https://static01.nyt.com/images/2021/09/14/science/07CAT-STRIPES/07CAT-STRIPES-mediumSquareAt3X-v2.jpg",
   },
   {
     id: 5,
     title: "Fifth item",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKsI6YC4I9bh8fFBfVofSfzhomUZoh2old-C6lvm9GRmOO0K9JmEV9JBQHLN8hzTnvnaA&usqp=CAU",
+    image: "https://cdn.britannica.com/39/7139-050-A88818BB/Himalayan-chocolate-point.jpg",
   },
 ];
 
-export const Cats: Sdk = {
-  getItems: (s) =>
-    new Promise((r) =>
-      setTimeout(
-        () => r(s ? items.filter((i) => i.title.includes(s)) : items),
-        3000
-      )
-    ),
+export const Cats: Sdk<Item> = {
+  getItems: (s) => new Promise((r) => setTimeout(() => r(s ? items.filter((i) => i.title.includes(s)) : items), 3000)),
   remove: (id) => {
     items = items.filter((i) => i.id !== id);
 
